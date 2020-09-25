@@ -4,10 +4,10 @@ const InitialState = {
 };
 
 const filters = (state = InitialState, action) => {
-  if (action.type === 'SET_SORT_BY') {
+  if (action.type === 'SET_CATEGORY') {
     return {
       ...state,
-      sortBy: action.payload,
+      category: action.payload,
     };
   }
   return state;
