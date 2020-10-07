@@ -1,10 +1,11 @@
 import React from 'react';
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Categories, SortPopup, PizzaLoadingBlock, PizzaBlock } from '../components';
 
 import { setCategory } from '../redux/actions/filters';
-import { fetchPizzas } from '../redux/actions/pizzas';
+import { setPizzas } from '../redux/actions/pizzas';
 
 const sortItems = [
   { name: 'популярности', type: 'popular' },
@@ -18,7 +19,10 @@ function Home() {
   const items = useSelector(({ pizzas }) => pizzas.items);
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
   React.useEffect(() => {
-    dispatch(fetchPizzas());
+    axios.get('http://localhost:3001/pizzas').then(({ data }) => {
+      dispatch(setPizzas(data));
+    });
+    //dispatch(fetchPizzas());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // eslint-disable-next-line react-hooks/exhaustive-deps
