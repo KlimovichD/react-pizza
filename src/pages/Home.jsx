@@ -21,6 +21,7 @@ function Home() {
     dispatch(fetchPizzas());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onClickCategory = React.useCallback((index) => dispatch(setCategory(index)), []);
   return (
     <div className="container">
